@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ParthImage from '@/../public/parth.JPG';
 const Login = () => {
   return (
-    <div className="border w-full h-screen">
+    <div className="border w-full h-screen shadow-2xl">
       <div className="m-5 rounded-3xl overflow-hidden">
         <div className="flex flex-col lg:flex-row">
           <div className="flex-1">
@@ -11,8 +11,8 @@ const Login = () => {
               className="w-[100%] lg:h-[610px] md:h-[400px] sm:h-[400px] h-[300px]"
             />
           </div>
-          <div className="flex-1 border flex justify-center items-center">
-            <div className=" w-[450px]">
+          <div className="flex-1  flex justify-center items-center">
+            <div className="w-[100%] max-w-[450px] py-4 px-2">
               <h1 className="text-3xl font-semibold mb-10">
                 Login to your Account
               </h1>
