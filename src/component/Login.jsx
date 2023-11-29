@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ParthImage from '@/../public/parth.JPG';
 const Login = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-fit">
       <div
         className="m-5 rounded-3xl overflow-hidden shadow-2xl "
         // style={{ boxShadow: '2px 2px 5px gray' }}
@@ -11,7 +11,7 @@ const Login = () => {
           <div className="flex-1">
             <Image
               src={ParthImage}
-              className="w-[100%] lg:h-[610px] md:h-[800px] sm:h-[400px] h-[320px]"
+              className="w-[100%] lg:h-[610px] md:h-[800px] sm:h-[400px] h-full"
             />
           </div>
           <div className="flex-1  flex justify-center items-center">
