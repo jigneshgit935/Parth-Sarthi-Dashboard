@@ -1,0 +1,69 @@
+//mutiple file upload
+'use client';
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const Home = () => {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [uploadStatus, setUploadStatus] = useState(null);
+
+  const handleFileChange = (e) => {
+    setSelectedFiles([...selectedFiles, ...Array.from(e.target.files)]);
+  };
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    selectedFiles.forEach((file) => {
+      formData.append('myimages', file);
+    });
+
+    try {
+      const response = await axios.post(
+        'http://localhost:8000/image/uploadimages',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      setUploadStatus(response.data);
+    } catch (error) {
+      console.error('Upload error:', error);
+      setUploadStatus({ ok: false, error: 'Error uploading images' });
+    }
+  };
+
+  return (
+    <div>
+      <input type="file" multiple onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload</button>
+      {uploadStatus && (
+        <div>
+          {uploadStatus.ok ? (
+            <div>
+              <p>Upload successful!</p>
+              <ul>
+                {uploadStatus.images.map((image, index) => (
+                  <li key={index}>
+                    <img
+                      src={image.imageUrl}
+                      alt={`Uploaded ${index}`}
+                      style={{ width: '100px' }}
+                    />
+                    <p>{image.message}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p>Error: {uploadStatus.error}</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Home;
